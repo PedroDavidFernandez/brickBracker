@@ -1,7 +1,5 @@
 package com.company;
 
-import org.w3c.dom.css.Rect;
-
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.awt.*;
