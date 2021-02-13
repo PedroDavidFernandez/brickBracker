@@ -57,6 +57,18 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         graphics.setColor(Color.yellow);
         graphics.fillOval(ballposX, ballposY, 20, 20);
 
+        if (totalBricks <= 0) {
+            play = false;
+            ballXdir = 0;
+            ballYdir = 0;
+            graphics.setColor(Color.red);
+            graphics.setFont(new Font("serif", Font.BOLD, 30));
+            graphics.drawString("YOU WON, BRO! Scores: " + score, 150, 300);
+
+            graphics.setFont(new Font("serif", Font.BOLD, 20));
+            graphics.drawString("Press enter to restart", 230, 350);
+        }
+
         if (ballposY > 570) {
             play = false;
             ballXdir = 0;
@@ -150,6 +162,20 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
                 playerX = 10;
             } else {
                 moveLeft();
+            }
+        }
+        if (keyEvent.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (!play) {
+                play = true;
+                ballposX = 120;
+                ballposY = 320;
+                ballXdir = -1;
+                ballYdir = -2;
+                playerX = 310;
+                totalBricks = 21;
+                score = 0;
+                map = new MapGenerator(3, 7);
+                repaint();
             }
         }
     }
