@@ -44,6 +44,11 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         graphics.fillRect(0, 0, 692, 3);
         graphics.fillRect(691, 0, 3, 592);
 
+        // scores
+        graphics.setColor(Color.white);
+        graphics.setFont(new Font("serif", Font.BOLD, 25));
+        graphics.drawString("" + score, 590, 30);
+
         // the paddle
         graphics.setColor(Color.green);
         graphics.fillRect(playerX, 550, 100, 8);
@@ -51,6 +56,18 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         // the ball
         graphics.setColor(Color.yellow);
         graphics.fillOval(ballposX, ballposY, 20, 20);
+
+        if (ballposY > 570) {
+            play = false;
+            ballXdir = 0;
+            ballYdir = 0;
+            graphics.setColor(Color.red);
+            graphics.setFont(new Font("serif", Font.BOLD, 30));
+            graphics.drawString("GAME OVER, BRO. Scores: " + score, 130, 300);
+
+            graphics.setFont(new Font("serif", Font.BOLD, 20));
+            graphics.drawString("Press enter to restart", 230, 350);
+        }
 
         graphics.dispose();
     }
