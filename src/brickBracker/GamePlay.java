@@ -33,14 +33,14 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         graphics.fillRect(1, 1, 692, 592);
 
         // borders
-        graphics.setColor(Color.magenta);
+        graphics.setColor(Color.yellow);
         graphics.fillRect(0, 0, 3, 592);
         graphics.fillRect(0, 0, 692, 3);
         graphics.fillRect(691, 0, 3, 592);
 
         // the paddle
         graphics.setColor(Color.green);
-        graphics.fillRect(playerX, 550, 110, 8);
+        graphics.fillRect(playerX, 550, 100, 8);
 
         // the ball
         graphics.setColor(Color.yellow);
@@ -52,6 +52,24 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         timer.start();
+        if (play) {
+            if(new Rectangle(ballposX, ballposY, 20, 20)
+                .intersects(new Rectangle(playerX, 550, 100, 8))) {
+                ballYdir = -ballYdir;
+            }
+
+            ballposX += ballXdir;
+            ballposY += ballYdir;
+            if (ballposX < 0) {
+                ballXdir = -ballXdir;
+            }
+            if (ballposY < 0) {
+                ballYdir = -ballYdir;
+            }
+            if (ballposX > 670) {
+                ballXdir = -ballXdir;
+            }
+        }
         repaint();
     }
 
