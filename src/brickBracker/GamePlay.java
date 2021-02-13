@@ -45,25 +45,47 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         // the ball
         graphics.setColor(Color.yellow);
         graphics.fillOval(ballposX, ballposY, 20, 20);
+
+        graphics.dispose();
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-
-    }
-
-    @Override
-    public void keyTyped(KeyEvent keyEvent) {
-
+        timer.start();
+        repaint();
     }
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
+        if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT) {
+            if (playerX >= 600) {
+                playerX = 600;
+            } else {
+                moveRight();
+            }
+        }
+        if (keyEvent.getKeyCode() == KeyEvent.VK_LEFT) {
+            if (playerX < 10) {
+                playerX = 10;
+            } else {
+                moveLeft();
+            }
+        }
+    }
 
+    private void moveLeft() {
+        play = true;
+        playerX -= 20;
+    }
+
+    private void moveRight() {
+        play = true;
+        playerX += 20;
     }
 
     @Override
-    public void keyReleased(KeyEvent keyEvent) {
+    public void keyTyped(KeyEvent keyEvent) {}
 
-    }
+    @Override
+    public void keyReleased(KeyEvent keyEvent) {}
 }
