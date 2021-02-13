@@ -30,6 +30,14 @@ public class MapGenerator {
                             brickWidth,
                             brickHeight
                     );
+                    graphics2D.setStroke(new BasicStroke(3));
+                    graphics2D.setColor(Color.black);
+                    graphics2D.drawRect(
+                            j * brickWidth + 80,
+                            i * brickHeight + 50,
+                            brickWidth,
+                            brickHeight
+                    );
                 }
             }
         }
